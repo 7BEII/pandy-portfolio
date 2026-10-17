@@ -1,0 +1,70 @@
+/* Touch layouts shared by the homepage, biography and project pages. */
+@media (max-width:700px) {
+  html { scroll-padding-top:20px; }
+  .compact .menu-toggle { width:48px;height:48px; }
+  .compact .mobile-nav a { min-height:48px;display:flex;align-items:center; }
+  .compact .compact-footer { font-size:11px;gap:4px 16px; }
+  .compact .compact-footer a { min-height:44px;display:flex;align-items:center; }
+
+  .home-page .home-kicker { font-size:10px;letter-spacing:.08em; }
+  .home-page .home-identity>p { font-size:13px;max-width:175px;line-height:1.7; }
+  .home-page .home-tags span { font-size:10px;letter-spacing:.04em; }
+  .home-page .home-actions .button { min-height:48px;font-size:13px; }
+  .home-page .personal-ip-badge small { font-size:10px; }
+  .home-page .home-work-tabs { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0; }
+  .home-page .home-work-tabs>button { min-height:48px;justify-content:center;gap:4px;padding:10px 0;font-size:12px;letter-spacing:0; }
+  .home-page .home-work-tabs>button>span { font-size:9px; }
+  .home-page .compact-work-grid { gap:25px 14px; }
+  .home-page .work-card-caption { gap:7px;justify-content:flex-start; }
+  .home-page .work-card-caption>div { min-width:0; }
+  .home-page .work-card-caption h3 { font-size:16px;line-height:1.4;overflow-wrap:anywhere; }
+  .home-page .work-card-caption p { font-size:12px;line-height:1.6;color:#a79ab9;letter-spacing:0; }
+  .home-page .work-card-caption h3>a { display:block; }
+  .home-page .work-index { font-size:10px;padding-top:4px; }
+  /* The large image is the primary touch target; omit duplicate arrow buttons. */
+  .home-page .work-text-arrow { display:none; }
+  .home-page .work-footnote { font-size:10px;line-height:1.7; }
+  .home-page .social-intro p,.home-page .social-copy small { font-size:13px; }
+  .home-page .social-mark { font-size:11px; }
+
+  .compact .project-tabs { justify-content:space-between;gap:12px; }
+  .compact .project-tabs>button { min-width:48px;min-height:48px;font-size:14px; }
+  .compact .project-breadcrumb { font-size:12px;gap:12px; }
+  .compact .project-breadcrumb>a { min-height:44px;display:flex;align-items:center; }
+  .compact .project-breadcrumb .project-status { font-size:10px; }
+  .compact .compact-project-title>p { font-size:15px; }
+  .compact .overview-description>p,.compact .compact-feature-grid p,
+  .compact .flow-intro p,.compact .case-split p,.compact .compact-bio>p { font-size:14px;line-height:1.85; }
+  .compact .overview-description dl>div { font-size:12px;grid-template-columns:72px 1fr; }
+  .compact .overview-description>.compact-outcome { font-size:13px; }
+  .compact .overview-visual figcaption,.compact .case-panel-head p,
+  .compact .case-thumbnails figcaption,.compact .compact-model-comparison figcaption { font-size:11px;line-height:1.6; }
+  .compact .flow-note,.compact .compact-bio .credentials p { font-size:12px;line-height:1.8; }
+  .compact .compact-project-bottom { font-size:12px;align-items:center; }
+  .compact .compact-project-bottom a { min-height:44px;display:flex;align-items:center; }
+  .compact .bio-actions { flex-wrap:wrap;gap:12px 20px; }
+  .compact .bio-actions .button,.compact .bio-actions>a { min-height:48px;font-size:13px;display:flex;align-items:center; }
+
+  .compact .image-dialog { width:100%;max-width:100%;height:100dvh;max-height:100dvh;margin:0;padding:0 16px max(24px,env(safe-area-inset-bottom));border:0;overscroll-behavior:contain; }
+  .compact .image-dialog .dialog-close,.home-page .image-dialog.long-image .dialog-close {
+    position:sticky;top:max(12px,env(safe-area-inset-top));z-index:2;display:block;
+    min-width:80px;min-height:44px;margin:12px 0 18px auto;padding:8px 16px;background:#21192e;font-size:14px;
+  }
+  .compact .image-dialog img { max-width:100%;max-height:calc(100dvh - 145px); }
+  .home-page .image-dialog.long-image img { width:100%;max-width:100%;max-height:none;height:auto; }
+  .compact .image-dialog p { font-size:12px;line-height:1.7; }
+  .compact .contact-dialog { max-height:calc(100dvh - 32px);overflow:auto; }
+  .compact .contact-close { min-height:44px;min-width:68px;top:8px;right:12px;font-size:12px; }
+  .compact .contact-dialog>p { font-size:13px; }
+  .compact .contact-dialog .copy-button { min-height:44px;font-size:13px; }
+  .compact .contact-email,.compact .contact-phone { min-height:44px;display:flex;align-items:center; }
+}
+@media (max-width:360px) {
+  .home-page .home-work-tabs>button { flex-direction:column;gap:3px;font-size:12px; }
+  .home-page .home-work-tabs>button>span { display:block;border:0;background:none;padding:0; }
+  .home-page .work-card-caption { display:block; }
+  .home-page .work-index { display:block;padding-top:0;margin-bottom:4px; }
+  .home-page .work-card-caption h3 { font-size:15px; }
+  .home-page .work-card-caption p { font-size:11px; }
+  .home-page .home-identity>p { max-width:150px;font-size:12px; }
+}

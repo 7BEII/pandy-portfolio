@@ -1,0 +1,252 @@
+/* ============================================================
+   Pandy 首页潮流化抛光 · 对齐求职作品集视觉（黑底 / 荧光紫 / 描边大字 / {01} 编号）
+   仅作用于 .home-page，覆盖 compact.css 与 home-ip.css 的同名规则
+   ============================================================ */
+.home-page{
+  --neon:#9d7bff;            /* 荧光紫主色 */
+  --neon-deep:#7a5cff;
+  --neon-soft:#b69aff;
+  --ink:#0a0a0a;
+  --card:#100d17;
+  --card-line:#2a2138;
+  --wa:var(--neon);          /* 每张卡片的主题强调色，按 work-* 覆盖 */
+}
+
+/* ---------- 整体氛围：作品区背后一层紫色辉光 ---------- */
+.home-page .home-work{position:relative}
+.home-page .home-work::before{
+  content:'';position:absolute;inset:-60px -24px auto -24px;height:420px;
+  background:radial-gradient(560px 300px at 78% 0%,#9d7bff17,transparent 70%);
+  pointer-events:none;
+}
+/* 描边大字水印，呼应作品集的 PANDY DESIGN 描边标题 */
+.home-page .home-work::after{
+  content:'WORKS ✳';position:absolute;top:-58px;right:-16px;
+  font-size:92px;font-weight:900;letter-spacing:.02em;line-height:1;
+  color:transparent;-webkit-text-stroke:1px #9d7bff1e;
+  pointer-events:none;user-select:none;white-space:nowrap;
+}
+
+/* ---------- 作品标题 ---------- */
+.home-page .work-heading h2{
+  display:flex;align-items:center;gap:12px;
+  font-size:22px;font-weight:700;letter-spacing:-.02em;
+}
+.home-page .work-heading h2::before{content:'✳';color:var(--neon);font-size:17px}
+.home-page .work-heading>span{color:#6f6392;letter-spacing:.22em}
+
+/* ---------- 选项卡：下划线动画 + 数字胶囊 ---------- */
+.home-page .home-work-tabs{gap:36px;border-bottom:1px dashed #382d4d;margin-bottom:30px}
+.home-page .home-work-tabs>button{
+  position:relative;font-size:14px;letter-spacing:.04em;color:#8b8199;
+  padding:6px 2px 16px;border-bottom:0;transition:color .25s;
+}
+.home-page .home-work-tabs>button:hover{color:#cfc6e2}
+.home-page .home-work-tabs>button::after{
+  content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;
+  background:linear-gradient(90deg,var(--neon-deep),var(--neon-soft));
+  transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.6,0,.2,1);
+}
+.home-page .home-work-tabs>button[aria-selected=true]{color:#fff}
+.home-page .home-work-tabs>button[aria-selected=true]::after{transform:scaleX(1)}
+.home-page .home-work-tabs>button>span{
+  font-size:9px;line-height:1;padding:3px 7px;border-radius:20px;
+  color:#8d7fa3;border:1px solid #3a2f52;transition:.25s;
+}
+.home-page .home-work-tabs>button[aria-selected=true]>span{
+  color:var(--neon-soft);border-color:#5b4979;background:#9d7bff14;
+}
+
+/* ---------- 作品卡片：深色海报卡 + 主题色描边辉光 ---------- */
+.home-page .compact-work-card{position:relative}
+.home-page .compact-work-card .work-shot{
+  padding:16px 16px 0;border-radius:12px;
+  background:linear-gradient(160deg,#191324 0%,#100d17 65%);
+  box-shadow:inset 0 0 0 1px var(--card-line);
+  transition:box-shadow .3s,transform .3s;
+}
+/* 卡片顶部一条主题色渐变高光 */
+.home-page .compact-work-card .work-shot::before{
+  content:'';position:absolute;top:0;left:14px;right:14px;height:2px;z-index:2;
+  background:linear-gradient(90deg,transparent,var(--wa),transparent);
+  opacity:.75;transition:opacity .3s;
+}
+.home-page .compact-work-card .work-shot>img{
+  border-radius:7px 7px 0 0;
+  box-shadow:0 10px 30px #000a;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1);
+}
+.home-page .compact-work-card:hover .work-shot{
+  transform:translateY(-4px);
+  box-shadow:inset 0 0 0 1px var(--wa),0 24px 55px -18px var(--wa);
+}
+.home-page .compact-work-card:hover .work-shot::before{opacity:1}
+.home-page .compact-work-card:hover .work-shot>img{transform:translateY(0) scale(1.012)}
+
+/* 主题色：与项目详情页 theme 对应 */
+.home-page .work-lime{--wa:#d3f26e}
+.home-page .work-pink{--wa:#f8b9d2}
+.home-page .work-silver{--wa:#cfd2c8}
+.home-page .work-orange{--wa:#ff9a66}
+
+/* 打开按钮：圆形描边 → 悬停填充 */
+.home-page .work-open{
+  width:32px;height:32px;padding:8px;
+  background:#0d0a14e6;color:var(--wa);
+  box-shadow:inset 0 0 0 1px var(--wa);
+  backdrop-filter:blur(4px);
+}
+
+/* ---------- 卡片文字区：{01} 编号 + 标题 + 圆形箭头 ---------- */
+.home-page .work-card-caption{align-items:flex-start;gap:10px;margin-top:16px}
+.home-page .work-index{
+  flex-shrink:0;font-size:11px;font-weight:600;letter-spacing:.04em;
+  color:var(--wa);padding-top:5px;font-variant-numeric:tabular-nums;
+}
+.home-page .work-card-caption h3{font-size:20px;letter-spacing:-.01em}
+.home-page .work-card-caption h3>a{transition:color .2s}
+.home-page .compact-work-card:hover .work-card-caption h3>a{color:var(--wa)}
+.home-page .work-card-caption p{font-size:10px;color:#847a94;letter-spacing:.03em}
+.home-page .work-text-arrow{
+  flex-shrink:0;width:36px;height:36px;display:grid;place-items:center;
+  font-size:15px;color:var(--wa);
+  border:1px solid #372c4e;border-radius:50%;
+  transition:.28s cubic-bezier(.4,0,.2,1);
+}
+.home-page .compact-work-card:hover .work-text-arrow{
+  background:var(--wa);border-color:transparent;color:#12091f;
+  transform:translate(2px,-2px);
+}
+
+/* ---------- PPT Agent 横条：同款深色卡 ---------- */
+.home-page .ppt-preview-strip{
+  margin-top:26px;padding:12px 20px 12px 12px;gap:20px;
+  background:linear-gradient(120deg,#181223,#100d17 70%);
+  border:1px solid var(--card-line);border-radius:12px;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+}
+.home-page .ppt-preview-strip:hover{
+  border-color:var(--neon);transform:translateY(-2px);
+  box-shadow:0 18px 45px -18px #9d7bff66;
+}
+.home-page .ppt-preview-image{width:128px;height:68px;border-radius:8px;box-shadow:inset 0 0 0 1px #ffffff14}
+.home-page .ppt-preview-title strong{font-size:17px;letter-spacing:-.01em}
+.home-page .ppt-preview-open{
+  width:36px;height:36px;display:grid;place-items:center;margin-left:auto;
+  font-size:15px;color:var(--neon);border:1px solid #372c4e;border-radius:50%;
+  transition:.28s;
+}
+.home-page .ppt-preview-strip:hover .ppt-preview-open{
+  background:var(--neon);color:#12091f;border-color:transparent;transform:translate(2px,-2px);
+}
+
+/* ---------- 脚注：虚线分隔 + 呼吸圆点 ---------- */
+.home-page .work-footnote{border-top:1px dashed #382d4d;margin-top:30px;padding-top:18px;letter-spacing:.04em}
+.home-page .work-footnote i{
+  background:var(--neon);box-shadow:0 0 8px var(--neon);
+  animation:homePulse 2.4s ease-in-out infinite;
+}
+@keyframes homePulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ---------- 左侧身份区微调 ---------- */
+.home-page .home-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;letter-spacing:.18em;color:#a493c4;
+  border:1px solid #342a4a;border-radius:20px;padding:6px 14px;
+}
+.home-page .home-kicker::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon)}
+.home-page .home-identity h1{
+  background:linear-gradient(180deg,#ffffff 25%,#d9c8ff 68%,#9d7bff 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.home-page .home-identity h2 .acid{color:var(--neon)}
+
+/* ---------- 身份区重构：去框悬浮人像 + 标签芯片 + 动作行 ---------- */
+.home-page .home-identity{min-height:640px}
+.home-page .home-tags{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 24px;position:relative;z-index:3}
+.home-page .home-tags span{
+  font-size:9px;letter-spacing:.12em;color:#9c8dbb;
+  border:1px dashed #3d3157;border-radius:20px;padding:4px 11px;
+}
+.home-page .home-actions{display:flex;flex-direction:column;align-items:flex-start;gap:16px;max-width:270px;position:relative;z-index:3}
+.home-page .home-actions .button{
+  white-space:nowrap;
+  background:linear-gradient(120deg,var(--neon-soft),var(--neon-deep));
+  color:#140b26;font-weight:600;border:0;
+  box-shadow:0 10px 30px -10px #9d7bff80;
+  transition:transform .25s,box-shadow .25s;
+}
+.home-page .home-actions .button:hover{transform:translateY(-2px);box-shadow:0 16px 38px -10px #9d7bff99}
+.home-page .personal-ip-badge{position:static;transition:opacity .2s}
+.home-page .personal-ip-badge:hover strong{color:var(--neon-soft)}
+
+/* 人像保持在标题下方；固定高度避免窄长素材向上遮住字标。 */
+.home-portrait-float{
+  position:absolute;right:-12px;top:228px;bottom:auto;width:190px;height:370px;
+  padding:0;background:none;border:0;z-index:1;cursor:zoom-in;overflow:clip;
+}
+.home-portrait-float::before{
+  content:'';position:absolute;left:50%;bottom:2%;width:100%;aspect-ratio:1;
+  transform:translateX(-50%);z-index:-1;
+  background:radial-gradient(closest-side,#9d7bff38,transparent 72%);
+}
+.home-portrait-float::after{
+  content:'';position:absolute;left:50%;bottom:6%;width:92%;aspect-ratio:1;
+  transform:translateX(-50%);z-index:-1;
+  border:1px dashed #9d7bff45;border-radius:50%;
+}
+.home-portrait-float>img{
+  position:absolute;left:50%;bottom:0;height:100%;width:auto;max-width:none;display:block;
+  transform:translateX(-53%);pointer-events:none;
+  filter:drop-shadow(0 14px 24px rgba(88,58,158,.25));
+  transition:transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.home-portrait-float:hover>img{transform:translateX(-53%) translateY(-4px) rotate(-.5deg)}
+.home-page .identity-bottom{left:auto;right:0;bottom:3px}
+
+/* ============================================================
+   响应式
+   ============================================================ */
+@media(max-width:1100px){
+  .home-page .home-work::after{font-size:64px;top:-44px}
+  .home-page .compact-work-card .work-shot{padding:12px 12px 0;border-radius:10px}
+  .home-page .work-card-caption h3{font-size:17px}
+  .home-page .work-text-arrow{width:32px;height:32px;font-size:13px}
+  .home-page .home-identity{min-height:660px}
+  .home-page .home-identity>p,.home-page .home-tags{max-width:170px}
+  .home-page .home-actions{max-width:190px}
+  .home-portrait-float{width:140px;height:290px;right:-8px;top:auto;bottom:20px}
+}
+@media(max-width:700px){
+  .home-page .home-work::before{inset:-30px -22px auto -22px}
+  .home-page .home-work::after{content:'WORKS';font-size:42px;top:-40px;right:0;-webkit-text-stroke-color:#9d7bff1a}
+  .home-page .work-heading h2{font-size:18px;gap:9px}
+  .home-page .work-heading h2::before{font-size:14px}
+  .home-page .home-work-tabs{gap:26px;margin-bottom:22px}
+  .home-page .home-work-tabs>button{font-size:13px;padding-bottom:12px}
+  .home-page .compact-work-card .work-shot{padding:10px 10px 0;border-radius:9px}
+  .home-page .compact-work-card .work-shot>img{border-radius:5px 5px 0 0}
+  .home-page .compact-work-card:hover .work-shot{transform:none}
+  .home-page .work-index{font-size:10px;padding-top:4px}
+  .home-page .work-card-caption{margin-top:12px}
+  .home-page .work-card-caption h3{font-size:15px}
+  .home-page .work-text-arrow{width:29px;height:29px;font-size:12px}
+  .home-page .ppt-preview-strip{padding:10px 14px 10px 10px;gap:14px;border-radius:10px}
+  .home-page .ppt-preview-image{width:104px;height:58px}
+  .home-page .ppt-preview-open{width:30px;height:30px;font-size:13px}
+  .home-page .home-kicker{font-size:9px;padding:5px 11px}
+  /* 手机端人物与介绍并排，避免人物独占一整段长页面。 */
+  .home-page .home-identity{min-height:580px;overflow:visible;padding-bottom:20px}
+  .home-page .home-identity>p,.home-page .home-tags{max-width:185px}
+  .home-page .home-tags{margin:2px 0 20px}
+  .home-page .home-actions{flex-wrap:wrap;gap:14px;max-width:185px}
+  .home-portrait-float{
+    position:absolute;right:0;top:185px;bottom:auto;z-index:1;
+    width:135px;height:300px;margin:0;display:block;
+  }
+  .home-portrait-float:hover>img{transform:translateX(-53%)}
+}
+@media(max-width:360px){
+  .home-page .home-identity>p,.home-page .home-tags,.home-page .home-actions{max-width:164px}
+  .home-portrait-float{width:105px;height:260px;right:-4px;top:190px}
+}
